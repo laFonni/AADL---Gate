@@ -1,0 +1,45 @@
+package GateUnit_Threads
+public
+  with Base_Types;
+  with gate_types;
+  with Thread_Properties;
+  with Timing_Properties;
+  with GateCommon;
+
+  -- safety monitor
+  thread safety_monitor
+    features
+      in_evt:  in  data port gate_types::SensorEvent;
+      out_cmd: out data port gate_types::GateCommand;
+  end safety_monitor;
+
+  thread implementation safety_monitor.impl
+  properties
+    Thread_Properties::Dispatch_Protocol       => Sporadic;
+    Timing_Properties::Compute_Execution_Time  => 1 ms .. 5 ms;
+    Thread_Properties::Priority                => 12;
+  end safety_monitor.impl;
+
+  -- main controller (jak wcześniej)
+  thread main_ctrl
+    features
+      input:       in  data port gate_types::GateState;
+      safety_cmd:  in  data port gate_types::GateCommand;
+      output:      out data port gate_types::GateCommand;
+
+      -- UWAGA: tu zostawiamy wyjście do serwera
+      request:     out data port gate_types::AccessRequest;
+      response:    in  data port gate_types::AccessResponse;
+
+      event_log:   out data port Base_Types::String;
+  end main_ctrl;
+
+  thread implementation main_ctrl.impl
+  properties
+    Thread_Properties::Dispatch_Protocol       => Periodic;
+    Timing_Properties::Period                  => 50 ms;
+    Timing_Properties::Compute_Execution_Time  => 1 ms .. 10 ms;
+    Timing_Properties::Deadline                => 50 ms;
+    Thread_Properties::Priority                => 10;
+  end main_ctrl.impl;
+end GateUnit_Threads;

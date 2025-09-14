@@ -1,0 +1,46 @@
+package GateTop
+public
+  with GateUnit;
+  with Perimeter;
+  with Server;
+  with GateCommon;
+  with Deployment_Properties;
+
+  system gate
+  end gate;
+
+  system implementation gate.impl
+    subcomponents
+      -- opcjonalnie CPU serwera (jeśli chcesz spiąć bindingi w całym modelu)
+      cpu_srv: processor GateCommon::cpu.corei5;
+
+      -- podsystemy
+      unit:  system GateUnit::gate_unit.impl;
+      peri:  system Perimeter::perimeter.impl;
+      serv:  system Server::server.impl;
+      
+      eth:   bus GateCommon::ethernet;
+      rs:    bus GateCommon::RS485;
+
+    connections
+      -- pętla sterowania bramy
+      g1: port unit.output -> peri.input;   -- komenda do napędu
+      g2: port peri.output -> unit.input;   -- stan krańcówek do logiki
+
+      -- autoryzacja, wideo i logi
+      s1: port unit.request   -> serv.request;
+      s2: port serv.response  -> unit.response;
+      s3: port unit.footage   -> serv.footage;
+      s4: port unit.event_log -> serv.event_log;
+      
+      ce1: bus access unit.eth <-> eth;
+      ce2: bus access serv.eth <-> eth;
+      cr1: bus access unit.rs  <-> rs;
+      cr2: bus access peri.rs  <-> rs;
+
+    properties
+      -- przykład (opcjonalnie): przypnij serwer do CPU
+      Deployment_Properties::Actual_Processor_Binding =>
+        (reference (cpu_srv)) applies to serv;
+  end gate.impl;
+end GateTop;

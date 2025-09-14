@@ -1,0 +1,143 @@
+package GateUnit
+public
+  with Base_Types;
+  with gate_types;
+  with GateCommon;
+  with Deployment_Properties;
+  with GateUnit_Threads;
+
+  ------------------------------------------------------------
+  -- DEVICES
+  ------------------------------------------------------------
+  device keypad
+    features
+      key: out data port gate_types::AccessRequest;
+  end keypad;
+  device implementation keypad.impl end keypad.impl;
+
+  device rfid
+    features
+      req: out data port gate_types::AccessRequest;
+  end rfid;
+  device implementation rfid.impl end rfid.impl;
+
+  device photo_beam
+    features
+      evt: out data port gate_types::SensorEvent;
+  end photo_beam;
+  device implementation photo_beam.impl end photo_beam.impl;
+
+  device presence_sensor
+    features
+      evt: out data port gate_types::SensorEvent;
+  end presence_sensor;
+  device implementation presence_sensor.impl end presence_sensor.impl;
+
+  device camera
+    features
+      frames: out data port gate_types::AccessRequest; -- placeholder video
+  end camera;
+  device implementation camera.impl end camera.impl;
+
+  ------------------------------------------------------------
+  -- PROCESS z wątkami w środku
+  ------------------------------------------------------------
+  process controller
+    features
+      -- wejścia z otoczenia/systemu:
+      input:       in  data port gate_types::GateState;
+      response:    in  data port gate_types::AccessResponse;
+
+      -- wejścia z urządzeń:
+      beam_evt:    in  data port gate_types::SensorEvent;
+      pres_evt:    in  data port gate_types::SensorEvent;
+
+      -- wyjścia na zewnątrz:
+      cmd_out:     out data port gate_types::GateCommand;
+      request:     out data port gate_types::AccessRequest;
+      event_log:   out data port Base_Types::String;
+  end controller;
+
+  process implementation controller.impl
+    subcomponents
+      safety: thread GateUnit_Threads::safety_monitor.impl;
+      main:   thread GateUnit_Threads::main_ctrl.impl;
+    connections
+      -- sensory -> safety
+      c1: port beam_evt  -> safety.in_evt;
+      c2: port pres_evt  -> safety.in_evt;
+
+      -- safety -> main
+      c3: port safety.out_cmd -> main.safety_cmd;
+
+      -- stan/komendy
+      c4: port input       -> main.input;
+      c5: port main.output -> cmd_out;
+
+      -- serwer + logi
+      c6: port main.request   -> request;
+      c7: port response       -> main.response;
+      c8: port main.event_log -> event_log;
+  end controller.impl;
+
+  ------------------------------------------------------------
+  -- SYSTEM
+  ------------------------------------------------------------
+  system gate_unit
+    features
+      input:     in  data port gate_types::GateState;
+      output:    out data port gate_types::GateCommand;
+      request:   out data port gate_types::AccessRequest;
+      response:  in  data port gate_types::AccessResponse;
+      footage:   out data port gate_types::AccessRequest;
+      event_log: out data port Base_Types::String;
+      
+      eth: requires bus access GateCommon::ethernet;
+      rs:  requires bus access GateCommon::RS485;
+      
+  end gate_unit;
+
+  system implementation gate_unit.impl
+    subcomponents
+      proc0: processor GateCommon::cpu.esp32;
+
+      -- devices
+      kpd:  device keypad.impl;
+      rid:  device rfid.impl;
+      cam:  device camera.impl;
+      beam: device photo_beam.impl;
+      pres: device presence_sensor.impl;
+
+      -- proces z wątkami
+      ctrl: process controller.impl;
+      
+      
+      
+
+    connections
+      -- sensory -> proces
+      u1: port beam.evt  -> ctrl.beam_evt;
+      u2: port pres.evt  -> ctrl.pres_evt;
+
+      -- sterowanie bramą
+      u3: port ctrl.cmd_out -> output;
+      u4: port input        -> ctrl.input;
+
+      -- autoryzacja (na razie bez łączenia urządzeń do request – decyzję podejmuje main w procesie)
+      -- jeśli chcesz jednak pchać raw requests na zewnątrz:
+      -- a1: port kpd.key -> request;
+      -- a2: port rid.req -> request;
+
+      -- wideo
+      v1: port cam.frames -> footage;
+
+      -- logi i serwer
+      s1: port ctrl.request   -> request;
+      s2: port response       -> ctrl.response;
+      e1: port ctrl.event_log -> event_log;
+
+    properties
+	  Deployment_Properties::Actual_Processor_Binding =>
+	    (reference (proc0)) applies to ctrl;
+  end gate_unit.impl;
+end GateUnit;

@@ -1,0 +1,63 @@
+package Perimeter
+public
+  with Base_Types;
+  with Data_Model;
+  with gate_types;
+  with GateCommon;
+
+  device motor
+    features
+      cmd: in data port gate_types::GateCommand;
+      duration: in data port Base_Types::Integer { Data_Model::Integer_Range => 0 .. 60000; };
+  end motor;
+  device implementation motor.impl end motor.impl;
+
+  device limits
+    features
+      state: out data port gate_types::GateState;
+  end limits;
+  device implementation limits.impl end limits.impl;
+
+  -- ręczne sterowanie przy awarii
+  device manual_override
+    features
+      manual_cmd: out data port gate_types::GateCommand;
+  end manual_override;
+  device implementation manual_override.impl end manual_override.impl;
+
+  -- ARBITER: wybiera między komendą automatyczną a ręczną
+  process controller
+    features
+      auto_cmd:   in  data port gate_types::GateCommand;
+      manual_cmd: in  data port gate_types::GateCommand;
+      cmd_out:    out data port gate_types::GateCommand;
+  end controller;
+  process implementation controller.impl end controller.impl;
+
+  system perimeter
+    features
+      input:  in  data port gate_types::GateCommand;  -- komenda automatyczna z zewnątrz
+      output: out data port gate_types::GateState;
+      
+      rs: requires bus access GateCommon::RS485;    -- stan krańcówek na zewnątrz
+  end perimeter;
+
+  system implementation perimeter.impl
+    subcomponents
+      m0:  device motor.impl;
+      l0:  device limits.impl;
+      man: device manual_override.impl;
+      ctl: process controller.impl;
+
+    connections
+      -- źródła do arbitra
+      c1: port input            -> ctl.auto_cmd;     -- parent.in -> sub.in (OK)
+      c2: port man.manual_cmd   -> ctl.manual_cmd;   -- sub.out   -> sub.in (OK)
+
+      -- wyjście arbitra do silnika
+      c3: port ctl.cmd_out      -> m0.cmd;           -- sub.out   -> sub.in (OK)
+
+      -- stany krańcówek
+      c4: port l0.state         -> output;           -- sub.out   -> parent.out (OK)
+  end perimeter.impl;
+end Perimeter;

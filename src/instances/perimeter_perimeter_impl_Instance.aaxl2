@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="perimeter_impl_Instance" category="system">
+    <featureInstance name="rs" category="busAccess" type="/4">
+      <feature xsi:type="aadl2:BusAccess" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.8/@ownedBusAccess.0"/>
+    </featureInstance>
+    <featureInstance name="input" type="/1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.8/@ownedDataPort.0"/>
+    </featureInstance>
+    <featureInstance name="output" direction="out" type="/3">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSED"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="OPENING"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSING"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="STOPPED"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="FAULT"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.8/@ownedDataPort.1"/>
+    </featureInstance>
+    <componentInstance name="m0" category="device">
+      <featureInstance name="cmd" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance name="duration" type="/2">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Integer_Range"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:RangeValue">
+              <minimum xsi:type="aadl2:IntegerLiteral"/>
+              <maximum xsi:type="aadl2:IntegerLiteral" value="60000"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.1/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Data_Representation"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:NamedValue">
+              <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#/0/@ownedProperty.4/@ownedPropertyType/@ownedLiteral.6"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="platform:/plugin/org.osate.contribution.sei/resources/packages/Base_Types.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedDataPort.1"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedDeviceSubcomponent.0"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:DeviceImplementation" href="../perimeter.aadl#Perimeter.motor.impl"/>
+    </componentInstance>
+    <componentInstance name="l0" category="device">
+      <featureInstance name="state" direction="out" type="/3">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSED"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPENING"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSING"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="STOPPED"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="FAULT"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedDataPort.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedDeviceSubcomponent.1"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:DeviceImplementation" href="../perimeter.aadl#Perimeter.limits.impl"/>
+    </componentInstance>
+    <componentInstance name="man" category="device">
+      <featureInstance name="manual_cmd" direction="out" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedDeviceSubcomponent.2"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:DeviceImplementation" href="../perimeter.aadl#Perimeter.manual_override.impl"/>
+    </componentInstance>
+    <componentInstance name="ctl" category="process">
+      <featureInstance name="auto_cmd" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.0"/>
+      </featureInstance>
+      <featureInstance name="manual_cmd" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.1"/>
+      </featureInstance>
+      <featureInstance name="cmd_out" direction="out" type="/1">
+        <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+          <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+          <ownedValue>
+            <ownedValue xsi:type="aadl2:ListValue">
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+              <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+            </ownedValue>
+          </ownedValue>
+          <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+        </ownedPropertyAssociation>
+        <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.6/@ownedDataPort.2"/>
+      </featureInstance>
+      <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedProcessSubcomponent.0"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:ProcessImplementation" href="../perimeter.aadl#Perimeter.controller.impl"/>
+    </componentInstance>
+    <connectionInstance name="input -> ctl.auto_cmd" kind="portConnection" destination="/0/@componentInstance.3/@featureInstance.0" source="/0/@featureInstance.1">
+      <connectionReference context="/0" source="/0/@featureInstance.1" destination="/0/@componentInstance.3/@featureInstance.0">
+        <connection xsi:type="aadl2:PortConnection" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedPortConnection.0"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="l0.state -> output" kind="portConnection" destination="/0/@featureInstance.2" source="/0/@componentInstance.1/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.1/@featureInstance.0" destination="/0/@featureInstance.2">
+        <connection xsi:type="aadl2:PortConnection" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedPortConnection.3"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="man.manual_cmd -> ctl.manual_cmd" complete="true" kind="portConnection" destination="/0/@componentInstance.3/@featureInstance.1" source="/0/@componentInstance.2/@featureInstance.0">
+      <connectionReference context="/0" source="/0/@componentInstance.2/@featureInstance.0" destination="/0/@componentInstance.3/@featureInstance.1">
+        <connection xsi:type="aadl2:PortConnection" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedPortConnection.1"/>
+      </connectionReference>
+    </connectionInstance>
+    <connectionInstance name="ctl.cmd_out -> m0.cmd" complete="true" kind="portConnection" destination="/0/@componentInstance.0/@featureInstance.0" source="/0/@componentInstance.3/@featureInstance.2">
+      <connectionReference context="/0" source="/0/@componentInstance.3/@featureInstance.2" destination="/0/@componentInstance.0/@featureInstance.0">
+        <connection xsi:type="aadl2:PortConnection" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedPortConnection.2"/>
+      </connectionReference>
+    </connectionInstance>
+    <classifier xsi:type="aadl2:SystemImplementation" href="../perimeter.aadl#Perimeter.perimeter.impl"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:SystemImplementation" href="../perimeter.aadl#Perimeter.perimeter.impl"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="gate_types::GateCommand" category="data">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:ListValue">
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <classifier xsi:type="aadl2:DataType" href="../gate_types.aadl#gate_types.GateCommand"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="Base_Types::Integer" category="data">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Data_Representation"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:NamedValue">
+          <namedValue xsi:type="aadl2:EnumerationLiteral" href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#/0/@ownedProperty.4/@ownedPropertyType/@ownedLiteral.6"/>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="platform:/plugin/org.osate.contribution.sei/resources/packages/Base_Types.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <classifier xsi:type="aadl2:DataType" href="platform:/plugin/org.osate.contribution.sei/resources/packages/Base_Types.aadl#Base_Types.Integer"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="gate_types::GateState" category="data">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:ListValue">
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSED"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="OPENING"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSING"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="STOPPED"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="FAULT"/>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <classifier xsi:type="aadl2:DataType" href="../gate_types.aadl#gate_types.GateState"/>
+  </instance:ComponentInstance>
+  <instance:ComponentInstance name="GateCommon::RS485" category="bus">
+    <classifier xsi:type="aadl2:BusType" href="../gate_common.aadl#GateCommon.RS485"/>
+  </instance:ComponentInstance>
+</xmi:XMI>

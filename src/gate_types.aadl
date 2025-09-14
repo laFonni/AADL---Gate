@@ -1,0 +1,28 @@
+package gate_types
+public
+  with Data_Model;
+  
+
+  data GateCommand
+  properties
+--    Data_Model::Data_Representation => Enumeration;
+    Data_Model::Enumerators => ("OPEN","CLOSE","STOP","PARTIAL");
+  end GateCommand;
+
+  data GateState
+  properties
+--    Data_Model::Data_Representation => Enumeration;
+    Data_Model::Enumerators => ("OPEN","CLOSED","OPENING","CLOSING","STOPPED","FAULT");
+  end GateState;
+
+  data AccessRequest end AccessRequest;
+  data AccessResponse end AccessResponse;
+
+  data SensorEvent
+  properties
+--    Data_Model::Data_Representation => Enumeration;
+    Data_Model::Enumerators => ("PHOTO_BEAM_BREAK","EDGE_TRIGGER","EMERGENCY_STOP","VEHICLE_PRESENT");
+  end SensorEvent;
+
+  data Millis end Millis;
+end gate_types;

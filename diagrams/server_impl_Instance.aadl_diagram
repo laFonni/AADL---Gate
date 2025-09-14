@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://osate.org/diagram" formatVersion="7">
+  <element uuid="3600d69d-e5ed-4b64-a667-75734c75e592" manual="true">
+    <element uuid="08ea7f7f-10fe-4498-b045-2a7a1f054c03" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>component_instance</seg>
+        <seg>cpu0</seg>
+      </bo>
+      <position x="440.9205436706543" y="173.0"/>
+      <size width="80.91275787353516" height="35.0"/>
+    </element>
+    <element uuid="fa110a2a-47ba-43af-af60-3cc2926e35a3" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>component_instance</seg>
+        <seg>db_access</seg>
+      </bo>
+      <position x="440.9205436706543" y="228.0"/>
+      <size width="115.74349212646484" height="35.0"/>
+    </element>
+    <element uuid="b8601a5c-4ce5-4711-8269-94bb449fde79" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>component_instance</seg>
+        <seg>db_video</seg>
+      </bo>
+      <position x="440.9205436706543" y="118.0"/>
+      <size width="106.12108993530273" height="35.0"/>
+    </element>
+    <element uuid="1de0a22e-f33c-4825-96bc-4acb41ce6d0a" manual="true">
+      <element uuid="6c5d69fc-d456-4e68-bd0f-cc872e8671c4" manual="true" dockArea="left">
+        <bo>
+          <seg>org.osate.ge.diagrams.instance</seg>
+          <seg>feature_instance</seg>
+          <seg>event_log</seg>
+        </bo>
+        <position y="10.0"/>
+      </element>
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>component_instance</seg>
+        <seg>log</seg>
+      </bo>
+      <position x="211.47654342651367" y="198.0"/>
+      <size width="209.4439926147461" height="60.0"/>
+    </element>
+    <element uuid="1ff5c651-d35f-4a20-ba2b-495df97b066b" manual="true">
+      <element uuid="b96117fc-bcbd-49db-b099-56549c3c4281" manual="true" dockArea="left">
+        <bo>
+          <seg>org.osate.ge.diagrams.instance</seg>
+          <seg>feature_instance</seg>
+          <seg>request</seg>
+        </bo>
+        <position y="10.0"/>
+      </element>
+      <element uuid="584d4ed5-01c3-45e6-9856-65c73c9c956b" manual="true" dockArea="right">
+        <bo>
+          <seg>org.osate.ge.diagrams.instance</seg>
+          <seg>feature_instance</seg>
+          <seg>response</seg>
+        </bo>
+        <position x="149.2278594970703" y="10.0"/>
+      </element>
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>component_instance</seg>
+        <seg>perm</seg>
+      </bo>
+      <position x="184.77081680297852" y="38.0"/>
+      <size width="216.07811737060547" height="60.0"/>
+    </element>
+    <element uuid="007de7f8-a181-4ef8-ba64-0bcdf118251c" manual="true">
+      <element uuid="b45493f5-82d9-45b9-851a-e6ba385138da" manual="true" dockArea="left">
+        <bo>
+          <seg>org.osate.ge.diagrams.instance</seg>
+          <seg>feature_instance</seg>
+          <seg>footage</seg>
+        </bo>
+        <position y="10.0"/>
+      </element>
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>component_instance</seg>
+        <seg>vid</seg>
+      </bo>
+      <position x="184.7968635559082" y="118.0"/>
+      <size width="182.01562118530273" height="60.0"/>
+    </element>
+    <element uuid="33c6467b-c2f8-4b2b-b59a-16f15a60926d" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>connection_reference</seg>
+        <seg>c1 : server_impl_Instance.request -> server_impl_Instance.perm.request</seg>
+      </bo>
+    </element>
+    <element uuid="099e4828-d7ad-48af-93df-37b2fcb72660" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>connection_reference</seg>
+        <seg>c2 : server_impl_Instance.perm.response -> server_impl_Instance.response</seg>
+      </bo>
+    </element>
+    <element uuid="823d194b-66c6-41df-b15a-3e7266cb47bd" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>connection_reference</seg>
+        <seg>c3 : server_impl_Instance.footage -> server_impl_Instance.vid.footage</seg>
+      </bo>
+    </element>
+    <element uuid="27b3c324-a484-4f81-b631-b8877f784811" manual="true">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>connection_reference</seg>
+        <seg>c4 : server_impl_Instance.event_log -> server_impl_Instance.log.event_log</seg>
+      </bo>
+    </element>
+    <element uuid="73ea95ce-d5e3-4f2d-b0b4-86e5def0452d" manual="true" dockArea="right">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>feature_instance</seg>
+        <seg>eth</seg>
+      </bo>
+      <position x="658.4895477294922" y="118.0"/>
+    </element>
+    <element uuid="21550816-0b82-4307-929e-d17f61a6f50c" manual="true" dockArea="left">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>feature_instance</seg>
+        <seg>event_log</seg>
+      </bo>
+      <position y="208.0"/>
+    </element>
+    <element uuid="fdfbbc77-671c-45bd-aa98-a21756199ef6" manual="true" dockArea="left">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>feature_instance</seg>
+        <seg>footage</seg>
+      </bo>
+      <position y="128.0"/>
+    </element>
+    <element uuid="31392bef-acd6-4b4f-9df2-7521f36649c6" manual="true" dockArea="left">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>feature_instance</seg>
+        <seg>request</seg>
+      </bo>
+      <position y="48.0"/>
+    </element>
+    <element uuid="bdc03576-67da-4d58-be33-b40f6c43a6b4" manual="true" dockArea="right">
+      <bo>
+        <seg>org.osate.ge.diagrams.instance</seg>
+        <seg>feature_instance</seg>
+        <seg>response</seg>
+      </bo>
+      <position x="622.174446105957" y="48.0"/>
+    </element>
+    <bo>
+      <seg>org.osate.ge.diagrams.instance</seg>
+      <seg>system_instance</seg>
+      <seg>/gate/src/instances/server_server_impl_instance.aaxl2</seg>
+    </bo>
+    <position/>
+    <size width="689.0247039794922" height="275.0"/>
+  </element>
+  <config type="structure" connectionPrimaryLabelsVisible="false">
+    <enabledAadlProperties/>
+    <context>
+      <seg>org.osate.ge.diagrams.instance</seg>
+      <seg>system_instance</seg>
+      <seg>/gate/src/instances/server_server_impl_instance.aaxl2</seg>
+    </context>
+  </config>
+</diagram:Diagram>

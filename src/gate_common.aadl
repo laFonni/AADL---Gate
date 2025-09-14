@@ -1,0 +1,14 @@
+package GateCommon
+public
+  bus RS485 end RS485;
+  bus ethernet end ethernet;
+  bus power end power;
+
+  processor cpu end cpu;
+  processor implementation cpu.esp32 end cpu.esp32;
+  processor implementation cpu.corei5 end cpu.corei5;
+
+  memory database end database;
+  memory implementation database.db_access end database.db_access;
+  memory implementation database.video end database.video;
+end GateCommon;

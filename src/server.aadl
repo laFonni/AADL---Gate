@@ -1,0 +1,57 @@
+package Server
+public
+  with GateCommon;
+  with gate_types;
+  with Base_Types;
+  with Deployment_Properties;
+
+  process permissions
+    features
+      request: in data port gate_types::AccessRequest;
+      response: out data port gate_types::AccessResponse;
+  end permissions;
+  process implementation permissions.impl end permissions.impl;
+
+  process footage_process
+    features
+      footage: in data port gate_types::AccessRequest; -- placeholder na wideo
+  end footage_process;
+  process implementation footage_process.impl end footage_process.impl;
+
+  process logger
+    features
+      event_log: in data port Base_Types::String;
+  end logger;
+  process implementation logger.impl end logger.impl;
+
+  system server
+    features
+      request: in data port gate_types::AccessRequest;
+      response: out data port gate_types::AccessResponse;
+      footage: in data port gate_types::AccessRequest;
+      event_log: in data port Base_Types::String;
+      eth: requires bus access GateCommon::ethernet;
+  end server;
+
+  system implementation server.impl
+    subcomponents
+      perm: process permissions.impl;
+      vid: process footage_process.impl;
+      log: process logger.impl;
+
+      cpu0: processor GateCommon::cpu.corei5;
+      db_access: memory GateCommon::database.db_access;
+      db_video:  memory GateCommon::database.video;
+
+    connections
+      c1: port request     -> perm.request;
+      c2: port perm.response -> response;
+      c3: port footage     -> vid.footage;
+      c4: port event_log   -> log.event_log;
+
+    properties
+      Deployment_Properties::Actual_Processor_Binding => (reference (cpu0)) applies to perm, vid, log;
+      Deployment_Properties::Actual_Memory_Binding    => (reference (db_access)) applies to perm, log;
+      Deployment_Properties::Actual_Memory_Binding    => (reference (db_video))  applies to vid;
+  end server.impl;
+end Server;

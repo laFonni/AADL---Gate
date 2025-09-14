@@ -1,0 +1,32 @@
+package Gate
+public
+  with GateUnit;
+  with Perimeter;
+  with Server;
+  with GateCommon;
+  with Deployment_Properties;
+
+  system gate end gate;
+
+  system implementation gate.impl
+    subcomponents
+      unit:  system GateUnit::gate_unit.impl;
+      perim: system Perimeter::perimeter.impl;
+      server: system Server::server.impl;
+
+      eth: bus GateCommon::ethernet;
+      rs485: bus GateCommon::RS485;
+
+    connections
+      c01: port unit.request     -> server.request;
+      c02: port server.response  -> unit.response;
+      c03: port unit.output      -> perim.input;
+      c04: port perim.output     -> unit.input;
+      c05: port unit.footage     -> server.footage;
+      c06: port unit.event_log   -> server.event_log;
+
+    properties
+      Deployment_Properties::Actual_Connection_Binding => (reference (eth))   applies to c01, c02, c05, c06;
+      Deployment_Properties::Actual_Connection_Binding => (reference (rs485)) applies to c03, c04;
+  end gate.impl;
+end Gate;

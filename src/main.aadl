@@ -1,0 +1,13 @@
+package main
+public
+  with Gate;
+
+  system top end top;
+
+  system implementation top.impl
+    subcomponents
+      gate: system Gate::gate.impl;
+  end top.impl;
+
+  -- Ustaw jako Root System: main::top.impl
+end main;

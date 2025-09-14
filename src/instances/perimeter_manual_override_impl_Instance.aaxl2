@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance">
+  <instance:SystemInstance name="manual_override_impl_Instance" category="device">
+    <featureInstance name="manual_cmd" direction="out" type="/1">
+      <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+        <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+        <ownedValue>
+          <ownedValue xsi:type="aadl2:ListValue">
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+            <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+          </ownedValue>
+        </ownedValue>
+        <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+      </ownedPropertyAssociation>
+      <feature xsi:type="aadl2:DataPort" href="../perimeter.aadl#/0/@ownedPublicSection/@ownedClassifier.4/@ownedDataPort.0"/>
+    </featureInstance>
+    <classifier xsi:type="aadl2:DeviceImplementation" href="../perimeter.aadl#Perimeter.manual_override.impl"/>
+    <systemOperationMode name="No Modes"/>
+    <componentImplementation xsi:type="aadl2:DeviceImplementation" href="../perimeter.aadl#Perimeter.manual_override.impl"/>
+  </instance:SystemInstance>
+  <instance:ComponentInstance name="gate_types::GateCommand" category="data">
+    <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+      <property href="platform:/plugin/org.osate.contribution.sei/resources/properties/Data_Model.aadl#Data_Model.Enumerators"/>
+      <ownedValue>
+        <ownedValue xsi:type="aadl2:ListValue">
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="OPEN"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="CLOSE"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="STOP"/>
+          <ownedListElement xsi:type="aadl2:StringLiteral" value="PARTIAL"/>
+        </ownedValue>
+      </ownedValue>
+      <propertyAssociation href="../gate_types.aadl#/0/@ownedPublicSection/@ownedClassifier.0/@ownedPropertyAssociation.0"/>
+    </ownedPropertyAssociation>
+    <classifier xsi:type="aadl2:DataType" href="../gate_types.aadl#gate_types.GateCommand"/>
+  </instance:ComponentInstance>
+</xmi:XMI>
